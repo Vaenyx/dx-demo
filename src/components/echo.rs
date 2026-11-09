@@ -32,5 +32,5 @@ pub fn Echo() -> Element {
 
 #[post("/api/echo")]
 async fn echo_server(input: String) -> Result<String> {
-    Ok(input.repeat(2))
+    Ok(input)
 }
