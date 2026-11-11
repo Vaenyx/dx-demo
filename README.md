@@ -1,32 +1,41 @@
-### Serving The App
+# Dioxus demo
 
-Run the following command in the project root to start developing with the default platform:
+A small Dioxus 0.7 fullstack web app with a responsive sidebar, persistent SQLite posts and a server-function echo chat. No login or author names.
 
-```bash
-dx serve
-```
+## Run
 
-To run for a different platform, use the `--platform platform` flag. E.g.
-```bash
-dx serve --platform web
-dx serve --platform desktop
-dx serve --platform android
-dx serve --platform ios
-```
-
-### Bundling The App
-
-Run the following command in the project root to start bundling with the default platform
+Install Rust and the Dioxus CLI if necessary:
 
 ```bash
-dx bundle
+rustup target add wasm32-unknown-unknown
+cargo install dioxus-cli --locked
 ```
 
-To bundle for a different platform, use the `--platform platform` flag. E.g.
+Start the fullstack application from this directory:
+
 ```bash
-dx bundle --platform web
-dx bundle --platform desktop
-dx bundle --platform android
-dx bundle --platform ios
+dx serve --web
 ```
 
+Open the address shown by `dx` (typically http://127.0.0.1:8080).
+
+## Demo
+
+1. **Posts:** See posts loaded from SQLite. Use **Refresh** to request the list again.
+2. **Create post:** Enter a title and description and save; go back to Posts to see it.
+3. **Echo:** Send a message. A Rust server function echoes it back into the conversation.
+4. Click the small sidebar arrow to collapse/expand it on desktop. On tablets it shrinks to icons; on phones it becomes a bottom navigation bar.
+
+Cargo regenerates `Cargo.lock` on the first build. The `posts.db` file is created automatically in the directory where the server is started. Stop the server and delete it to reset your demo. Posts are kept after restarting the app; echo messages only live in the currently opened page.
+
+## Relevant code
+
+- `src/main.rs` — routes and app entry point
+- `src/views/navbar.rs` — responsive sidebar
+- `src/views/posts.rs` — database feed
+- `src/views/create.rs` — post form
+- `src/views/echo.rs` — echo conversation and server function
+- `src/db.rs` — SQLite connection, schema and server functions
+- `assets/styling/main.css` — all styling and breakpoints
+
+WebAssembly runs the UI in the browser. The Rust server handles SQLite and the echo API.

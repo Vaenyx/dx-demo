@@ -1,8 +1,11 @@
-mod home;
-pub use home::Home;
+mod posts;
+pub use posts::Posts;
 
-mod blog;
-pub use blog::Blog;
+mod create;
+pub use create::CreatePost;
+
+mod echo;
+pub use echo::Echo;
 
 mod navbar;
 pub use navbar::Navbar;

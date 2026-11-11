@@ -1,25 +1,15 @@
 [application]
 
 [web.app]
+title = "Dioxus Demo"
 
-# HTML title tag content
-title = "dx-demo"
-
-# include `assets` in web platform
 [web.resource]
-
-# Additional CSS style files
 style = []
-
-# Additional JavaScript files
 script = []
 
 [web.resource.dev]
-
-# Javascript code file
-# serve: [dev-server] only
 script = []
 
 [bundle]
-identifier = "test"
-publisher = "test"
+identifier = "dev.dioxus.demo"
+publisher = "Demo"
